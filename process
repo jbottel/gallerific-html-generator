@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for file in $1/*.jpg;
+do echo $1;
+echo $file;
+icon=${file//\.jpg/icon\.jpg};
+sed "s:REPLACE_SLIDE:${file//$1\///}:" template.html | 
+sed "s:REPLACE_ICON:${icon//$1\///}:" |
+sed "s://:/:g" >> output.html;
+done;
