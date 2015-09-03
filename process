@@ -1,10 +1,18 @@
 #!/bin/bash
 
+# gallerific-html-generator
+# modify template.html to match your gallerific style
+# the first command line argument should be a directory
+# of images with a .jpg extension and each icon should
+# end in [name]icon.jpg
+
 for file in $1/*.jpg;
 do echo $1;
 echo $file;
 icon=${file//\.jpg/icon\.jpg};
 sed "s:REPLACE_SLIDE:${file//$1\///}:" template.html | 
 sed "s:REPLACE_ICON:${icon//$1\///}:" |
+echo "Appending to output..."
 sed "s://:/:g" >> output.html;
 done;
+echo "Done."
